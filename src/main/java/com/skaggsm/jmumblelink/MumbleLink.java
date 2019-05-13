@@ -7,7 +7,7 @@ import java.io.IOException;
  * Created by Mitchell Skaggs on 5/12/2019.
  */
 
-interface MumbleLink extends Closeable {
+public interface MumbleLink extends Closeable {
     @Override
     void close() throws IOException;
 

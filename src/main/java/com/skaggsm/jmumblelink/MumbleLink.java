@@ -1,77 +1,65 @@
 package com.skaggsm.jmumblelink;
 
-import com.skaggsm.sharedmemory.SharedMemory;
-import com.sun.jna.Native;
-
 import java.io.Closeable;
 import java.io.IOException;
 
 /**
- * Created by Mitchell Skaggs on 5/11/2019.
+ * Created by Mitchell Skaggs on 5/12/2019.
  */
-public class MumbleLink implements Closeable {
-    private SharedMemory pointer;
-    private MumbleLinkMemory mumble;
 
-    public MumbleLink() {
-        pointer = SharedMemory.getSharedMemory("MumbleLink");
-        mumble = new MumbleLinkMemory(pointer.getMemory());
-        mumble.clear();
-    }
-
-    private void read() {
-        mumble.read();
-    }
-
-    private void write() {
-        mumble.write();
-    }
-
+interface MumbleLink extends Closeable {
     @Override
-    public void close() throws IOException {
-        mumble = null;
-        pointer.close();
-        pointer = null;
-    }
+    void close() throws IOException;
 
-    public MumbleLinkMemory getMumbleLinkMemory() {
-        return mumble;
-    }
+    MumbleLinkMemory getMumbleLinkMemory();
 
-    public int getUiVersion() {
-        read();
-        return mumble.uiVersion;
-    }
+    int getUiVersion();
 
-    public void setUiVersion(int uiVersion) {
-        mumble.uiVersion = uiVersion;
-        write();
-    }
+    void setUiVersion(int uiVersion);
 
-    public int getUiTick() {
-        read();
-        return mumble.uiTick;
-    }
+    int getUiTick();
 
-    public void setUiTick(int uiTick) {
-        mumble.uiTick = uiTick;
-        write();
-    }
+    void setUiTick(int uiTick);
 
-    public void incrementUiTick() {
-        //setUiTick(getUiTick() + 1);
-        read();
-        mumble.uiTick++;
-        write();
-    }
+    void incrementUiTick();
 
-    public String getName() {
-        read();
-        return Native.toString(mumble.name);
-    }
+    float[] getAvatarPosition();
 
-    public void setName(String name) {
-        System.arraycopy(Native.toCharArray(name), 0, mumble.name, 0, name.length() + 1);
-        write();
-    }
+    void setAvatarPosition(float[] avatarPosition);
+
+    float[] getAvatarFront();
+
+    void setAvatarFront(float[] avatarFront);
+
+    float[] getAvatarTop();
+
+    void setAvatarTop(float[] avatarTop);
+
+    String getName();
+
+    void setName(String name);
+
+    float[] getCameraPosition();
+
+    void setCameraPosition(float[] cameraPosition);
+
+    float[] getCameraFront();
+
+    void setCameraFront(float[] cameraFront);
+
+    float[] getCameraTop();
+
+    void setCameraTop(float[] cameraTop);
+
+    String getIdentity();
+
+    void setIdentity(String identity);
+
+    String getContext();
+
+    void setContext(String context);
+
+    String getDescription();
+
+    void setDescription(String description);
 }

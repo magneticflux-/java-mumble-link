@@ -1,4 +1,4 @@
-package com.skaggsm.mumblelink;
+package com.skaggsm.jmumblelink;
 
 import java.io.IOException;
 

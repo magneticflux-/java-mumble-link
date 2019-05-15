@@ -10,6 +10,8 @@ import java.util.List;
  * Created by Mitchell Skaggs on 5/11/2019.
  */
 public class MumbleLinkMemory extends Structure {
+    public static int DEFAULT_SIZE = new MumbleLinkMemory(null).size();
+
     public int uiVersion = 0; // uint32_t
     public int uiTick = 0; // uint32_t
 

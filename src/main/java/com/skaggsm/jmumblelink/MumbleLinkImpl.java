@@ -13,7 +13,7 @@ public class MumbleLinkImpl implements MumbleLink {
     private MumbleLinkMemory mumble;
 
     public MumbleLinkImpl() {
-        pointer = SharedMemory.getSharedMemory("MumbleLink");
+        pointer = SharedMemory.getSharedMemory("MumbleLink", MumbleLinkMemory.DEFAULT_SIZE);
         mumble = new MumbleLinkMemory(pointer.getMemory());
         mumble.clear();
     }

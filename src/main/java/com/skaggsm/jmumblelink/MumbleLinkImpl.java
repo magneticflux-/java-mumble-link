@@ -178,9 +178,14 @@ public class MumbleLinkImpl implements MumbleLink {
 
     @Override
     public void setContext(String context) {
+        int length = context.length();
+
         // Must fit in 256 with null char at end
-        assert context.length() <= 255;
-        System.arraycopy(Native.toByteArray(context), 0, mumble.context, 0, context.length() + 1);
+        assert length <= 255;
+
+        System.arraycopy(Native.toByteArray(context), 0, mumble.context, 0, length + 1);
+        mumble.context_len = length;
+
         write();
     }
 

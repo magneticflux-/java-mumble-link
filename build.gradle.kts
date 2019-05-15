@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.skaggsm:jvm-shared-memory:0.1.0")
+    implementation("com.skaggsm:jvm-shared-memory:0.1.2")
     implementation("net.java.dev.jna:jna:4.4.0")
     implementation("net.java.dev.jna:platform:3.4.0")
 

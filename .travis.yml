@@ -3,13 +3,11 @@
 
 language: java
 
-jdk:
-  - oraclejdk8
+jdk: openjdk8
 
 #Skipping install step to avoid having Travis run arbitrary './gradlew assemble' task
 # https://docs.travis-ci.com/user/customizing-the-build/#Skipping-the-Installation-Step
-install:
-  - true
+install: skip
 
 #Don't build tags
 branches:

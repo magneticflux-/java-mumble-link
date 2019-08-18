@@ -1,3 +1,4 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -28,6 +29,7 @@ dependencies {
 
 configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
@@ -36,7 +38,9 @@ tasks.withType<KotlinCompile> {
 tasks.test {
     useJUnitPlatform()
     testLogging {
-        events("passed", "skipped", "failed")
+        testLogging {
+            events(PASSED, SKIPPED, FAILED, STANDARD_ERROR)
+        }
     }
 }
 
